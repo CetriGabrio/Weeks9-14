@@ -18,4 +18,17 @@ public class TrafficLights : MonoBehaviour
             t = 0;
         }
     }
+
+    public void ShowImage()
+    {
+        Debug.Log("The image is there!");
+        //banana.localScale = Vector3.one * 1.3f;
+    }
+
+    public void HideImage()
+    {
+        Debug.Log("The image is not there!");
+        //banana.localScale = Vector3.one;
+
+    }
 }
