@@ -8,6 +8,12 @@ public class RightMovement : MonoBehaviour
 
     Vector3 startPos;
 
+    [Range(0,1)]
+    public float t;
+    public AnimationCurve Curve;
+
+    public TrailRenderer Trail;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,12 +27,14 @@ public class RightMovement : MonoBehaviour
     {
         transform.Translate(Vector2.right * MovementSpeed * Time.deltaTime);
 
+        startPos.y = startPos.y * t;
+
         if (transform.position.x > 10)
         {
-        this.transform.position = startPos;
-        }
-        
-        //Vector3 startPos = new Vector3(10, transform.position.y, transform.position.z);
 
+            this.transform.position = startPos;
+
+            Trail.enabled = false;
+        }
     }
 }
