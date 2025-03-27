@@ -7,6 +7,7 @@ public class RightMovement : MonoBehaviour
     public float MovementSpeed = 1f;
 
     Vector3 startPos;
+    Vector3 trailStartPos;
 
     [Range(0,1)]
     public float t;
@@ -18,6 +19,7 @@ public class RightMovement : MonoBehaviour
     void Start()
     {
         startPos = this.transform.position;
+        trailStartPos = this.transform.position;
 
         transform.position = startPos;
     }
@@ -27,7 +29,7 @@ public class RightMovement : MonoBehaviour
     {
         transform.Translate(Vector2.right * MovementSpeed * Time.deltaTime);
 
-        startPos.y = startPos.y * t;
+        //startPos.y = startPos.y * t;
 
         if (transform.position.x > 10)
         {
@@ -36,5 +38,12 @@ public class RightMovement : MonoBehaviour
 
             Trail.enabled = false;
         }
+
+       //if (transform.position.x < 10)
+        //{
+            //this.transform.position = trailStartPos;
+
+            //Trail.enabled = true;
+        //}
     }
 }
