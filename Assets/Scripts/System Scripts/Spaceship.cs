@@ -6,6 +6,8 @@ public class Spaceship : MonoBehaviour
 {
 
     public float speed = 1f;
+
+    public GameObject laserPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,11 @@ public class Spaceship : MonoBehaviour
     void Update()
     {
         SpaceshipMovement();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(laserPrefab, transform.position, Quaternion.identity);
+        }
     }
 
     //Created a new function for all the spaceship movement features

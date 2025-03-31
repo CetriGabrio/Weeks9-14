@@ -289,6 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+  laserPrefab: {fileID: 1602267366}
 --- !u!212 &819315100
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -361,37 +362,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2698851499344828860, guid: fa60e55b400a1024a9ab3e9a234f2770, type: 3}
   m_PrefabInstance: {fileID: 6198851062371291798}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1602267369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1602267366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a84d1fab2a5f6fd4abcc5d0c3900c8a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 1602917441}
-  player: {fileID: 819315098}
-  laserWidth: 10
-  LaserHeight: 20
-  layer:
-    serializedVersion: 2
-    m_Bits: 64
---- !u!114 &1602267370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1602267366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19758732ed77a4343bc944a9067c68bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1602917441
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +454,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7718029841431360615, guid: fa60e55b400a1024a9ab3e9a234f2770, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 1602917441}
+    - target: {fileID: -7718029841431360615, guid: fa60e55b400a1024a9ab3e9a234f2770, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 819315098}
     - target: {fileID: 2698851499344828860, guid: fa60e55b400a1024a9ab3e9a234f2770, type: 3}
       propertyPath: m_Name
       value: Laser
@@ -492,13 +470,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2698851499344828860, guid: fa60e55b400a1024a9ab3e9a234f2770, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6119923910134979446, guid: fa60e55b400a1024a9ab3e9a234f2770, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.48
       objectReference: {fileID: 0}
     - target: {fileID: 6119923910134979446, guid: fa60e55b400a1024a9ab3e9a234f2770, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.88
+      value: -2.64
       objectReference: {fileID: 0}
     - target: {fileID: 6119923910134979446, guid: fa60e55b400a1024a9ab3e9a234f2770, type: 3}
       propertyPath: m_LocalPosition.z
@@ -535,13 +517,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2698851499344828860, guid: fa60e55b400a1024a9ab3e9a234f2770, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1602267369}
-    - targetCorrespondingSourceObject: {fileID: 2698851499344828860, guid: fa60e55b400a1024a9ab3e9a234f2770, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1602267370}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa60e55b400a1024a9ab3e9a234f2770, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

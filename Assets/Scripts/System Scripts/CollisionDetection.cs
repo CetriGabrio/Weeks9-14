@@ -8,7 +8,7 @@ public class CollisionDetection : MonoBehaviour
     public bool CheckCollision(float r1x, float r1y, float r1w, float r1h,
                                       float r2x, float r2y, float r2w, float r2h)
     {
-        Debug.Log("Checking");
+        //Debug.Log("Checking");
         //Check if the rectangles overlap
         return r1x < r2x + r2w &&    //r1 left edge is before r2 right edge
                r1x + r1w > r2x &&    //r1 right edge is after r2 left edge

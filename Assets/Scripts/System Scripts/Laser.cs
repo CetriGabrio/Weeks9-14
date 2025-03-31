@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Laser : MonoBehaviour
@@ -13,7 +14,17 @@ public class Laser : MonoBehaviour
     public float laserWidth = 1f;
     public float LaserHeight = 2f;
 
+    public float speed = 1f;
+
     void Update()
+    {
+        LaserCollision();
+
+        transform.Translate(Vector3.up * speed * Time.deltaTime);
+        Destroy(gameObject, 5f);
+    }
+
+    void LaserCollision()
     {
         float playerWidth = 1.0f;  //Define player's width
         float playerHeight = 2.0f; //Define player's height
@@ -21,15 +32,15 @@ public class Laser : MonoBehaviour
         //Check collision for Player Bullets
         if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-                float enemyWidth = enemy.transform.localScale.x;
-                float enemyHeight = enemy.transform.localScale.y;
+            float enemyWidth = enemy.transform.localScale.x;
+            float enemyHeight = enemy.transform.localScale.y;
 
-                if (GetComponent<CollisionDetection>().CheckCollision(
-                        transform.position.x, transform.position.y, laserWidth, LaserHeight,
-                        enemy.transform.position.x, enemy.transform.position.y, enemyWidth, enemyHeight))
-                {
-                    Debug.Log("Player Bullet hit Enemy!");
-                }
+            if (GetComponent<CollisionDetection>().CheckCollision(
+                    transform.position.x, transform.position.y, laserWidth, LaserHeight,
+                    enemy.transform.position.x, enemy.transform.position.y, enemyWidth, enemyHeight))
+            {
+                Debug.Log("Player Bullet hit Enemy!");
+            }
         }
 
         //Check collision for Enemy Bullets
