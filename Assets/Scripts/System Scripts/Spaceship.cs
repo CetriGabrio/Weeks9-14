@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spaceship : MonoBehaviour
@@ -23,11 +24,7 @@ public class Spaceship : MonoBehaviour
     {
         SpaceshipMovement();
 
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > canFire)
-        {
-            canFire = Time.time + firerate;
-            Instantiate(laserPrefab, transform.position + new Vector3(0, 1f, 0), Quaternion.identity);
-        }
+        ShootLaser();
     }
 
     //Created a new function for all the spaceship movement features
@@ -67,5 +64,17 @@ public class Spaceship : MonoBehaviour
         /////////////////
         ///Use camera to wolrd point to handle different aspect ratios
         ////////////////
+    }
+
+    //Created a function t handle all the shooting mechanics to organize the code
+    void ShootLaser()
+    {
+        //Shooting happens only when space bar is pressed
+        //I also added a cooldown so that the player can not spam shoot
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > canFire)
+        {
+            canFire = Time.time + firerate;
+            Instantiate(laserPrefab, transform.position + new Vector3(0, 1f, 0), Quaternion.identity); //The vector3 is for the offset, allowing the laser to be spawned in the correct position
+        }
     }
 }
