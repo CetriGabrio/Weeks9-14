@@ -21,7 +21,12 @@ public class Laser : MonoBehaviour
         LaserCollision();
 
         transform.Translate(Vector3.up * speed * Time.deltaTime);
-        Destroy(gameObject, 3f);
+        //Destroy(gameObject, 3f);
+
+        if (transform.position.y > 6.1f)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     void LaserCollision()

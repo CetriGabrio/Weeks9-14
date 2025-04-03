@@ -8,6 +8,9 @@ public class Spaceship : MonoBehaviour
     public float speed = 1f;
 
     public GameObject laserPrefab;
+
+    public float firerate = 1f;
+    private float canFire = -1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,9 +23,10 @@ public class Spaceship : MonoBehaviour
     {
         SpaceshipMovement();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > canFire)
         {
-            Instantiate(laserPrefab, transform.position, Quaternion.identity);
+            canFire = Time.time + firerate;
+            Instantiate(laserPrefab, transform.position + new Vector3(0, 1f, 0), Quaternion.identity);
         }
     }
 
