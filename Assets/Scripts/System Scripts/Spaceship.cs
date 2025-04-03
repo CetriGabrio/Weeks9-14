@@ -16,7 +16,7 @@ public class Spaceship : MonoBehaviour
     void Start()
     {
         //Reset player position at the start of the game to the centre of the screen
-        transform.position = new Vector3(0, -2, 0);
+        transform.position = new Vector2(0, -2);
     }
 
     // Update is called once per frame
