@@ -114,4 +114,4 @@ MonoBehaviour:
   player: {fileID: 0}
   laserWidth: 1
   LaserHeight: 2
-  speed: 1
+  speed: 3
