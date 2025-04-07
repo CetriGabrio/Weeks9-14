@@ -8,21 +8,33 @@ public class Laser : MonoBehaviour
     public GameObject enemy;
 
     //Player position and size
-    public GameObject player;
+    //public GameObject player;
 
     //Dimensions for bullets
     public float laserWidth = 1f;
-    public float LaserHeight = 2f;
+    public float laserHeight = 2f;
 
     public float speed = 1f;
+
+    private CollisionDetection collisionDetection;
+
+    private void Start()
+    {
+        collisionDetection = GetComponent<CollisionDetection>();
+
+        //I am using tags so that if the laser detects the enemy tag, it process the intended code
+        //In this case it would deal damage and destroy the enemy witouth impacting other elements
+        enemy = GameObject.FindWithTag("Enemy");
+
+    }
 
     void Update()
     {
         LaserCollision();
 
         transform.Translate(Vector3.up * speed * Time.deltaTime);
-        //Destroy(gameObject, 3f);
 
+        //Destroy the laser if it leaves the screen
         if (transform.position.y > 6.1f)
         {
             Destroy(this.gameObject);
@@ -31,32 +43,25 @@ public class Laser : MonoBehaviour
 
     void LaserCollision()
     {
-        float playerWidth = 1.0f;  //Define player's width
-        float playerHeight = 2.0f; //Define player's height
+        if (enemy == null) return;  //If no enemy is found, return early
 
-        //Check collision for Player Bullets
-        if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        //Get enemy's dimensions - both height and width
+        float enemyWidth = enemy.transform.localScale.x;
+        float enemyHeight = enemy.transform.localScale.y;
+
+        //Check if the laser collides with the enemy using the rectangle-based collision detection
+        //Since I can not use colliders, rectangles are the easiest shape to code through logic
+        if (collisionDetection.CheckCollision(
+                transform.position.x, transform.position.y, laserWidth, laserHeight,
+                enemy.transform.position.x, enemy.transform.position.y, enemyWidth, enemyHeight))
         {
-            float enemyWidth = enemy.transform.localScale.x;
-            float enemyHeight = enemy.transform.localScale.y;
+            //Debug.Log("Player Laser hit Enemy!");
 
-            if (GetComponent<CollisionDetection>().CheckCollision(
-                    transform.position.x, transform.position.y, laserWidth, LaserHeight,
-                    enemy.transform.position.x, enemy.transform.position.y, enemyWidth, enemyHeight))
-            {
-                Debug.Log("Player Bullet hit Enemy!");
-            }
-        }
+            //Destroy the laser after it hits the enemy
+            Destroy(gameObject);
 
-        //Check collision for Enemy Bullets
-        if (gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            if (GetComponent<CollisionDetection>().CheckCollision(
-                    transform.position.x, transform.position.y, laserWidth, LaserHeight,
-                    player.transform.position.x, player.transform.position.y, playerWidth, playerHeight))
-            {
-                Debug.Log("Enemy Bullet hit Player!");
-            }
+            //Destroy the enemy after collision with the laser
+            Destroy(enemy);
         }
     }
 }

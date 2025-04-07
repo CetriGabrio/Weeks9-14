@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 819315099}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  laserPrefab: {fileID: 2698851499344828860, guid: fa60e55b400a1024a9ab3e9a234f2770, type: 3}
+  playerLaserPrefab: {fileID: 2698851499344828860, guid: fa60e55b400a1024a9ab3e9a234f2770, type: 3}
   firerate: 0.3
 --- !u!212 &819315100
 SpriteRenderer:
@@ -410,6 +410,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5311338834211692434, guid: 8409ca34a60b9e346bf3d7c60a869965, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8476820540641519078, guid: 8409ca34a60b9e346bf3d7c60a869965, type: 3}
+      propertyPath: enemyLaserPrefab
+      value: 
+      objectReference: {fileID: 2698851499344828860, guid: d0f7e8b9664c35044898e7e20648325e, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -420,6 +428,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 216822342}
-  - {fileID: 819315101}
   - {fileID: 52889188}
   - {fileID: 1270242724}
+  - {fileID: 819315101}

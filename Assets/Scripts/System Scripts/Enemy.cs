@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     //Variable for the falling down speed of the enemy
     public float speed = 1f;
 
+    //public GameObject enemyLaserPrefab;
+
     // Start is called before the first frame update
     void Start()
     {

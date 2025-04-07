@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1768352189482155814}
   - component: {fileID: 5251803761411182556}
   - component: {fileID: -7718029841431360615}
-  m_Layer: 0
-  m_Name: Laser
+  m_Layer: 8
+  m_Name: PlayerLaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1133598987, guid: 0c0f4d23cfe83f9448f1079e4eb3a4ad, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -110,8 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a84d1fab2a5f6fd4abcc5d0c3900c8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
-  player: {fileID: 0}
+  enemy: {fileID: 5311338834211692434, guid: 8409ca34a60b9e346bf3d7c60a869965, type: 3}
   laserWidth: 1
-  LaserHeight: 2
+  laserHeight: 2
   speed: 3

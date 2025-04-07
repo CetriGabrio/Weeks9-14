@@ -8,7 +8,7 @@ public class Spaceship : MonoBehaviour
 
     public float speed = 1f;
 
-    public GameObject laserPrefab;
+    public GameObject playerLaserPrefab;
 
     public float firerate = 1f;
     private float canFire = -1f;
@@ -74,7 +74,7 @@ public class Spaceship : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > canFire)
         {
             canFire = Time.time + firerate;
-            Instantiate(laserPrefab, transform.position + new Vector3(0, 1f, 0), Quaternion.identity); //The vector3 is for the offset, allowing the laser to be spawned in the correct position
+            Instantiate(playerLaserPrefab, transform.position + new Vector3(0, 1f, 0), Quaternion.identity); //The vector3 is for the offset, allowing the laser to be spawned in the correct position
         }
     }
 }
