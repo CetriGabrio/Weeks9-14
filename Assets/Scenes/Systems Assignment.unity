@@ -340,6 +340,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4487921869622486291, guid: 8409ca34a60b9e346bf3d7c60a869965, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487921869622486291, guid: 8409ca34a60b9e346bf3d7c60a869965, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487921869622486291, guid: 8409ca34a60b9e346bf3d7c60a869965, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -391,6 +399,10 @@ PrefabInstance:
       propertyPath: enemyLaserPrefab
       value: 
       objectReference: {fileID: 2698851499344828860, guid: d0f7e8b9664c35044898e7e20648325e, type: 3}
+    - target: {fileID: 8541996260814689627, guid: 8409ca34a60b9e346bf3d7c60a869965, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -632635983, guid: 755c033fe778f454cbb69a2211b19b1c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
