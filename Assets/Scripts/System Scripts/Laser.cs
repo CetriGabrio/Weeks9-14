@@ -10,7 +10,7 @@ public class Laser : MonoBehaviour
     //Player position and size
     //public GameObject player;
 
-    //Dimensions for bullets
+    //Dimensions for lasers
     public float laserWidth = 1f;
     public float laserHeight = 2f;
 

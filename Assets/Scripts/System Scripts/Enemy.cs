@@ -19,6 +19,11 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        EnemyMovement();
+    }
+
+    void EnemyMovement()
+    {
         //Function to move the enemy only downwards at a constant speed
         transform.Translate(Vector3.down * speed * Time.deltaTime);
 

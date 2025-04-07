@@ -9,14 +9,25 @@ public class Spaceship : MonoBehaviour
     public float speed = 1f;
 
     public GameObject playerLaserPrefab;
+    public GameObject enemy;
+
+    private CollisionDetection collisionDetection;
 
     public float firerate = 1f;
     private float canFire = -1f;
+
+    public float playerWidth = 1f;
+    public float playerHeight = 2f;
+
+    public int lives = 3;
+
     // Start is called before the first frame update
     void Start()
     {
         //Reset player position at the start of the game to the centre of the screen
         transform.position = new Vector2(0, -2);
+
+        collisionDetection = GetComponent<CollisionDetection>();
     }
 
     // Update is called once per frame
@@ -25,6 +36,8 @@ public class Spaceship : MonoBehaviour
         SpaceshipMovement();
 
         ShootLaser();
+
+        EnemyCollision();
     }
 
     //Created a new function for all the spaceship movement features
@@ -75,6 +88,33 @@ public class Spaceship : MonoBehaviour
         {
             canFire = Time.time + firerate;
             Instantiate(playerLaserPrefab, transform.position + new Vector3(0, 1f, 0), Quaternion.identity); //The vector3 is for the offset, allowing the laser to be spawned in the correct position
+        }
+    }
+
+    void EnemyCollision()
+    {
+        if (enemy == null) return;  //If no enemy is found, return early
+
+        //Get enemy's dimensions - both height and width
+        float enemyWidth = enemy.transform.localScale.x;
+        float enemyHeight = enemy.transform.localScale.y;
+
+
+        if (collisionDetection.CheckCollision(
+                transform.position.x, transform.position.y, playerWidth, playerHeight,
+                enemy.transform.position.x, enemy.transform.position.y, enemyWidth, enemyHeight))
+        {
+            lives--;
+
+            if (lives < 1)
+            {
+                Destroy(this.gameObject);
+                Debug.Log("Game Over");
+            }
+            else
+            {
+                Destroy(enemy);
+            }
         }
     }
 }
