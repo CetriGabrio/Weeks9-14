@@ -113,4 +113,4 @@ MonoBehaviour:
   enemy: {fileID: 5311338834211692434, guid: 8409ca34a60b9e346bf3d7c60a869965, type: 3}
   laserWidth: 1
   laserHeight: 2
-  speed: 3
+  speed: 7

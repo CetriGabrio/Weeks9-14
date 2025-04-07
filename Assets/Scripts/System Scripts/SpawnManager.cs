@@ -5,6 +5,9 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject enemy;
+    public GameObject enemySpawner;
+
+    public float spawnTime = 5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,9 +24,10 @@ public class SpawnManager : MonoBehaviour
     {
         while (true)
         {
-            Vector3 posToSpawn = new Vector3(Random.Range(-9.5f, 9.5f), 6.2f, 0);
-            Instantiate(enemy, posToSpawn, Quaternion.identity);
-            yield return new WaitForSeconds(5.0f);
+            Vector2 posToSpawn = new Vector3(Random.Range(-9.5f, 9.5f), 6.2f);
+            GameObject newEnemy = Instantiate(enemy, posToSpawn, Quaternion.identity);
+            newEnemy.transform.parent = enemySpawner.transform;
+            yield return new WaitForSeconds(spawnTime);
         }
     }
 }
