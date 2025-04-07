@@ -93,27 +93,30 @@ public class Spaceship : MonoBehaviour
 
     void EnemyCollision()
     {
-        if (enemy == null) return;  //If no enemy is found, return early
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        //Get enemy's dimensions - both height and width
-        float enemyWidth = enemy.transform.localScale.x;
-        float enemyHeight = enemy.transform.localScale.y;
-
-
-        if (collisionDetection.CheckCollision(
-                transform.position.x, transform.position.y, playerWidth, playerHeight,
-                enemy.transform.position.x, enemy.transform.position.y, enemyWidth, enemyHeight))
+        foreach (GameObject enemy in enemies)
         {
-            lives--;
+            //Get enemy's dimensions - both height and width
+            float enemyWidth = enemy.transform.localScale.x;
+            float enemyHeight = enemy.transform.localScale.y;
 
-            if (lives < 1)
+
+            if (collisionDetection.CheckCollision(
+                    transform.position.x, transform.position.y, playerWidth, playerHeight,
+                    enemy.transform.position.x, enemy.transform.position.y, enemyWidth, enemyHeight))
             {
-                Destroy(this.gameObject);
-                Debug.Log("Game Over");
-            }
-            else
-            {
-                Destroy(enemy);
+                lives--;
+
+                if (lives < 1)
+                {
+                    Destroy(this.gameObject);
+                    Debug.Log("Game Over");
+                }
+                else
+                {
+                    Destroy(enemy);
+                }
             }
         }
     }
