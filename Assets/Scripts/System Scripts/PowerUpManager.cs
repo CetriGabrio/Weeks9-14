@@ -9,11 +9,18 @@ public class PowerUpManager : MonoBehaviour
     public UnityEvent OnSpeedBoostCollected;
     public UnityEvent OnFireRateCollected;
 
+    public Spaceship spaceship;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (spaceship != null)
+        {
+            OnShieldCollected.AddListener(spaceship.ActivateShield);
+            OnSpeedBoostCollected.AddListener(spaceship.ActivateSpeedBoost);
+            OnFireRateCollected.AddListener(spaceship.ActivateFireRateBoost);
+        }
     }
 
     // Update is called once per frame

@@ -15,18 +15,19 @@ public class Spaceship : MonoBehaviour
     public GameObject enemy;
 
     private CollisionDetection collisionDetection;
+    private PowerUpManager powerUpManager;
 
-    public float baseFireRate = 1f;  
-    public float boostedFireRate = 0.5f;
+    private float baseFireRate = 1f;  
+    private float boostedFireRate = 0.5f;
     private float currentFireRate;
 
     private float canFire = -1f;
     private bool isFireRateBoosted = false;
 
-    public float playerWidth = 1f;
-    public float playerHeight = 2f;
+    private float playerWidth = 1f;
+    private float playerHeight = 2f;
 
-    public int lives = 3;
+    private int lives = 3;
 
     public int score = 0;
     public TextMeshProUGUI scoreText;
@@ -59,6 +60,14 @@ public class Spaceship : MonoBehaviour
         transform.position = new Vector2(0, -2);
 
         collisionDetection = GetComponent<CollisionDetection>();
+        powerUpManager = FindObjectOfType<PowerUpManager>();
+
+        if (powerUpManager != null)
+        {
+            powerUpManager.OnShieldCollected.AddListener(ActivateShield);
+            powerUpManager.OnSpeedBoostCollected.AddListener(ActivateSpeedBoost);
+            powerUpManager.OnFireRateCollected.AddListener(ActivateFireRateBoost);
+        }
 
         spawnManager = FindObjectOfType<SpawnManager>();
 
@@ -316,11 +325,17 @@ public class Spaceship : MonoBehaviour
 
         gameObject.SetActive(false);
 
+        if (powerUpManager != null)
+        {
+            powerUpManager.OnShieldCollected.RemoveListener(ActivateShield);
+            powerUpManager.OnSpeedBoostCollected.RemoveListener(ActivateSpeedBoost);
+            powerUpManager.OnFireRateCollected.RemoveListener(ActivateFireRateBoost);
+        }
+
         if (gameOverText != null)
         {
             gameOverText.text = "GAME OVER"; 
             gameOverText.gameObject.SetActive(true); 
         }
     }
-
 }
