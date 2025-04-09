@@ -11,6 +11,8 @@ public class ShieldPowerUp : MonoBehaviour
     public float playerHitboxWidth = 2f;
     public float playerHitboxHeight = 2f;
 
+    public float speed = 2f;
+
     private GameObject player;
     private CollisionDetection collisionDetection;
     public PowerUpManager powerUpManager;
@@ -20,12 +22,16 @@ public class ShieldPowerUp : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         collisionDetection = GetComponent<CollisionDetection>();
+
+        powerUpManager = FindObjectOfType<PowerUpManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
         CheckPlayerPickup();
+
+        transform.Translate(Vector3.down * speed * Time.deltaTime);
     }
 
     void CheckPlayerPickup()

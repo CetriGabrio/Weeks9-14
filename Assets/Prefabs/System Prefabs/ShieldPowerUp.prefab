@@ -98,6 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80668fb0057a4834a83d328536346c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerUpWidth: 1
+  powerUpHeight: 1
+  playerHitboxWidth: 2
+  playerHitboxHeight: 2
+  speed: 1
+  powerUpManager: {fileID: 0}
 --- !u!114 &6538794308822081843
 MonoBehaviour:
   m_ObjectHideFlags: 0

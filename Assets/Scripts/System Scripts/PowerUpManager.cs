@@ -26,7 +26,7 @@ public class PowerUpManager : MonoBehaviour
 
     public void TriggerShield()
     {
-        Debug.Log("Shield Collected");
+        //Debug.Log("Shield Collected");
         OnShieldCollected.Invoke();
     }
 }

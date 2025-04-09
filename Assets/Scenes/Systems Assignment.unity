@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 397553492}
   - component: {fileID: 397553491}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: PowerUpManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

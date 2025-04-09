@@ -12,6 +12,7 @@ public class SpawnManager : MonoBehaviour
     //variables to reference the enemy spawwner gameobject
     public GameObject enemySpawner;
     public GameObject enemy; //and the object being spawned (the enemy)
+    public GameObject shieldPowerUp;
 
     //Variable to handle the time in between spawning of enemies
     public float spawnTime = 5f;
