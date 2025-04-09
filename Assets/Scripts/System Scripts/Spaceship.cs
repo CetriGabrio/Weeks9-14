@@ -42,7 +42,7 @@ public class Spaceship : MonoBehaviour
 
     private SpawnManager spawnManager;
 
-    public bool isShielded = false;
+    private bool isShielded = false;
     public ShieldVisual shieldVisual;
 
     public AudioSource audioSource;
