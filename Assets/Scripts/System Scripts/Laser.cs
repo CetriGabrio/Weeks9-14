@@ -47,6 +47,10 @@ public class Laser : MonoBehaviour
 
     void LaserCollision()
     {
+        //Previously I had a simple enemy = GameObject.FindGameObjectsWithTag("Enemy");
+        //However, this meethod only counted as the first enemy spawned, meaning that the others where "Tagless"
+        //This created issues with the hitboxes not being attached to the enemy
+        //Therefore, I updated it to a list method so that every enemy spawned is detected as enemy using the assigned Tag
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         foreach (GameObject enemy in enemies)
