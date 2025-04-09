@@ -47,6 +47,7 @@ public class Spaceship : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip laserSoundClip;
     public AudioSource backgroundMusicSource;
+    public AudioClip powerUpSoundClip;
 
     private bool isGameOver = false;
     public TextMeshProUGUI gameOverText;
@@ -208,6 +209,8 @@ public class Spaceship : MonoBehaviour
     {
         isShielded = true;
         Debug.Log("Shield On");
+
+        PlayPowerUpSound();
     }
 
     public void DeactivateShield()
@@ -229,15 +232,14 @@ public class Spaceship : MonoBehaviour
     {
         StopAllCoroutines();
         StartCoroutine(SpeedBoostCoroutine());
+        PlayPowerUpSound();
     }
 
     IEnumerator SpeedBoostCoroutine()
     {
         speed = baseSpeed * 2f;
-        Debug.Log("Speed boost on!");
         yield return new WaitForSeconds(5f);
         speed = baseSpeed;
-        Debug.Log("Speed boost off.");
     }
 
     public void ActivateFireRateBoost()
@@ -249,6 +251,8 @@ public class Spaceship : MonoBehaviour
         canFire = -1f;  
 
         StartCoroutine(ResetFireRateAfterSeconds(5f));
+        PlayPowerUpSound(); ;
+
     }
 
     IEnumerator ResetFireRateAfterSeconds(float seconds)
@@ -290,6 +294,15 @@ public class Spaceship : MonoBehaviour
             }
         }
     }
+
+    void PlayPowerUpSound()
+    {
+        if (audioSource != null && powerUpSoundClip != null)
+        {
+            audioSource.PlayOneShot(powerUpSoundClip);
+        }
+    }
+
     void GameOver()
     {
         isGameOver = true;
