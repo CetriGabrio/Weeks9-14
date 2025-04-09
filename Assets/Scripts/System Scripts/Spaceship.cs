@@ -7,6 +7,7 @@ public class Spaceship : MonoBehaviour
 {
 
     public float speed = 1f;
+    private float baseSpeed;
 
     public GameObject playerLaserPrefab;
     public GameObject enemy;
@@ -41,6 +42,8 @@ public class Spaceship : MonoBehaviour
         spawnManager = FindObjectOfType<SpawnManager>();
 
         shieldVisual = GetComponent<ShieldVisual>();
+
+        baseSpeed = speed;
 
     }
 
@@ -163,5 +166,20 @@ public class Spaceship : MonoBehaviour
         {
             Debug.Log("Damage");
         }
+    }
+
+    public void ActivateSpeedBoost()
+    {
+        StopAllCoroutines();
+        StartCoroutine(SpeedBoostCoroutine());
+    }
+
+    IEnumerator SpeedBoostCoroutine()
+    {
+        speed = baseSpeed * 2f;
+        Debug.Log("Speed boost on!");
+        yield return new WaitForSeconds(5f);
+        speed = baseSpeed;
+        Debug.Log("Speed boost off.");
     }
 }

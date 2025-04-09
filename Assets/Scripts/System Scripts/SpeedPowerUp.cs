@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ShieldPowerUp : MonoBehaviour
+public class SpeedBoostPowerUp : MonoBehaviour
 {
-
     public float powerUpWidth = 1f;
     public float powerUpHeight = 1f;
 
@@ -17,16 +14,15 @@ public class ShieldPowerUp : MonoBehaviour
     private CollisionDetection collisionDetection;
     public PowerUpManager powerUpManager;
 
-    // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         collisionDetection = GetComponent<CollisionDetection>();
 
         powerUpManager = FindObjectOfType<PowerUpManager>();
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         CheckPlayerPickup();
@@ -42,7 +38,7 @@ public class ShieldPowerUp : MonoBehaviour
             transform.position.x, transform.position.y, powerUpWidth, powerUpHeight,
             player.transform.position.x, player.transform.position.y, playerHitboxWidth, playerHitboxHeight))
         {
-            powerUpManager.TriggerShield();
+            powerUpManager.TriggerSpeedBoost();
             Destroy(gameObject);
         }
     }

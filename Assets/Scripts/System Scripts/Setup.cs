@@ -13,6 +13,7 @@ public class Setup : MonoBehaviour
     {
         powerUpManager.OnShieldCollected.AddListener(spaceship.ActivateShield);
         powerUpManager.OnShieldCollected.AddListener(shieldVisual.PlayShieldEffect);
+        powerUpManager.OnSpeedBoostCollected.AddListener(spaceship.ActivateSpeedBoost);
 
         powerUpManager.OnShieldCollected.AddListener(() =>
         {
