@@ -19,12 +19,14 @@ public class SpawnManager : MonoBehaviour
 
     //Setting up the coroutine to spawn enemies
     private Coroutine spawnCoroutine;
+    private Coroutine powerUpSpawnCoroutine;
 
     //Start is called before the first frame update
     void Start()
     {
         //Starting the coroutine right at the beginning of the game
         spawnCoroutine = StartCoroutine(SpawnRoutine());
+        powerUpSpawnCoroutine = StartCoroutine(SpawnPowerUpRoutine());
     }
 
     //Update is called once per frame
@@ -44,6 +46,17 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    IEnumerator SpawnPowerUpRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(3f, 8f));
+
+            Vector2 posToSpawn = new Vector2(Random.Range(-9.5f, 9.5f), 6.2f);
+            Instantiate(shieldPowerUp, posToSpawn, Quaternion.identity);
+        }
+    }
+
     //Fuction that handles the spawning mechanic of the enemy 
     //In particular it's dealing with the position of the enemies
     public void SpawnEnemyAtTop()
@@ -60,6 +73,12 @@ public class SpawnManager : MonoBehaviour
         {
             StopCoroutine(spawnCoroutine);
             spawnCoroutine = null;
+        }
+
+        if (powerUpSpawnCoroutine != null)
+        {
+            StopCoroutine(powerUpSpawnCoroutine);
+            powerUpSpawnCoroutine = null;
         }
     }
 }
