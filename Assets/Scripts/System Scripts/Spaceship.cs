@@ -46,6 +46,9 @@ public class Spaceship : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip laserSoundClip;
+    public AudioSource backgroundMusicSource;
+
+    private bool isGameOver = false;
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +67,9 @@ public class Spaceship : MonoBehaviour
 
         UpdateScoreDisplay();
         UpdateHeartsDisplay();
+
+        if (isGameOver)
+            return;
 
     }
 
@@ -181,9 +187,7 @@ public class Spaceship : MonoBehaviour
 
                     if (lives < 1)
                     {
-                        spawnManager.StopSpawning();
-                        Destroy(this.gameObject);
-                        Debug.Log("Game Over");
+                        GameOver();
                     }
                     else
                     {
@@ -280,4 +284,20 @@ public class Spaceship : MonoBehaviour
             }
         }
     }
+    void GameOver()
+    {
+        isGameOver = true;
+
+        if (backgroundMusicSource != null && backgroundMusicSource.isPlaying)
+        {
+            backgroundMusicSource.Stop();
+        }
+
+        Time.timeScale = 0f;
+
+        gameObject.SetActive(false);
+
+        Debug.Log("Game Over");
+    }
+
 }
