@@ -47,25 +47,30 @@ public class Laser : MonoBehaviour
 
     void LaserCollision()
     {
-        if (enemy == null) return;  //If no enemy is found, return early
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        //Get enemy's dimensions - both height and width
-        float enemyWidth = enemy.transform.localScale.x;
-        float enemyHeight = enemy.transform.localScale.y;
-
-        //Check if the laser collides with the enemy using the rectangle-based collision detection
-        //Since I can not use colliders, rectangles are the easiest shape to code through logic
-        if (collisionDetection.CheckCollision(
-                transform.position.x, transform.position.y, laserWidth, laserHeight,
-                enemy.transform.position.x + enemyHitboxOffsetX, enemy.transform.position.y + enemyHitboxOffsetY, enemyWidth + enemyHitboxTrimRight, enemyHeight))
+        foreach (GameObject enemy in enemies)
         {
-            //Debug.Log("Player Laser hit Enemy!");
+            //Get enemy's dimensions - both height and width
+            float enemyWidth = enemy.transform.localScale.x;
+            float enemyHeight = enemy.transform.localScale.y;
 
-            //Destroy the laser after it hits the enemy
-            Destroy(gameObject);
+            //Check if the laser collides with the enemy using the rectangle-based collision detection
+            //Since I can not use colliders, rectangles are the easiest shape to code through logic
+            if (collisionDetection.CheckCollision(
+                    transform.position.x, transform.position.y, laserWidth, laserHeight,
+                    enemy.transform.position.x + enemyHitboxOffsetX, enemy.transform.position.y + enemyHitboxOffsetY, enemyWidth + enemyHitboxTrimRight, enemyHeight))
+            {
+                //Debug.Log("Player Laser hit Enemy!");
 
-            //Destroy the enemy after collision with the laser
-            Destroy(enemy);
+                //Destroy the laser after it hits the enemy
+                Destroy(gameObject);
+
+                //Destroy the enemy after collision with the laser
+                Destroy(enemy);
+
+                break;
+            }
         }
     }
 }

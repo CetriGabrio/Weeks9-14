@@ -25,6 +25,8 @@ public class Spaceship : MonoBehaviour
     float enemyHitboxOffsetY = +0.5f;
     float enemyHitboxTrimRight = -1.5f;
 
+    private SpawnManager spawnManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,9 @@ public class Spaceship : MonoBehaviour
         transform.position = new Vector2(0, -2);
 
         collisionDetection = GetComponent<CollisionDetection>();
+
+        spawnManager = FindObjectOfType<SpawnManager>();
+
     }
 
     // Update is called once per frame
@@ -114,6 +119,7 @@ public class Spaceship : MonoBehaviour
 
                 if (lives < 1)
                 {
+                    spawnManager.StopSpawning();
                     Destroy(this.gameObject);
                     Debug.Log("Game Over");
                 }
