@@ -662,7 +662,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUpManager: {fileID: 397553491}
   spaceship: {fileID: 819315099}
-  shieldVisual: {fileID: 533676785}
+  shieldVisual: {fileID: 0}
 --- !u!4 &397553493
 Transform:
   m_ObjectHideFlags: 0
@@ -1009,7 +1009,7 @@ MonoBehaviour:
   fullHeartSprite: {fileID: -278715239, guid: 3b4063333d5b3f04a87935545c1e7c7e, type: 3}
   emptyHeartSprite: {fileID: -1380504717, guid: 3b4063333d5b3f04a87935545c1e7c7e, type: 3}
   isShielded: 0
-  shieldVisual: {fileID: 533676785}
+  shieldVisual: {fileID: 0}
   audioSource: {fileID: 819315103}
   laserSoundClip: {fileID: 8300000, guid: a623af56c3a940d46a53dd3072d8b3ae, type: 3}
   backgroundMusicSource: {fileID: 61183270}
