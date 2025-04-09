@@ -27,6 +27,9 @@ public class Spaceship : MonoBehaviour
 
     private SpawnManager spawnManager;
 
+    public bool isShielded = false;
+    public ShieldVisual shieldVisual;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,8 @@ public class Spaceship : MonoBehaviour
         collisionDetection = GetComponent<CollisionDetection>();
 
         spawnManager = FindObjectOfType<SpawnManager>();
+
+        shieldVisual = GetComponent<ShieldVisual>();
 
     }
 
@@ -115,19 +120,48 @@ public class Spaceship : MonoBehaviour
                     transform.position.x, transform.position.y, playerWidth, playerHeight,
                     enemy.transform.position.x + enemyHitboxOffsetX, enemy.transform.position.y + enemyHitboxOffsetY, enemyWidth + enemyHitboxTrimRight, enemyHeight))
             {
-                lives--;
-
-                if (lives < 1)
+                if (isShielded)
                 {
-                    spawnManager.StopSpawning();
-                    Destroy(this.gameObject);
-                    Debug.Log("Game Over");
+                    DeactivateShield();
+                    Destroy(enemy);
+                    Debug.Log("Shield absorbed the hit");
                 }
                 else
                 {
-                    Destroy(enemy);
+
+                    lives--;
+
+                    if (lives < 1)
+                    {
+                        spawnManager.StopSpawning();
+                        Destroy(this.gameObject);
+                        Debug.Log("Game Over");
+                    }
+                    else
+                    {
+                        Destroy(enemy);
+                    }
                 }
             }
+        }
+    }
+
+    public void ActivateShield()
+    {
+        isShielded = true;
+        Debug.Log("Shield On");
+    }
+
+    public void DeactivateShield()
+    {
+        if (isShielded)
+        {
+            isShielded = false;
+            Debug.Log("Shield Off");
+        }
+        else
+        {
+            Debug.Log("Damage");
         }
     }
 }
