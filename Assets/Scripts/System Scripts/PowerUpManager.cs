@@ -6,8 +6,9 @@ using UnityEngine.Events;
 public class PowerUpManager : MonoBehaviour
 {
     public UnityEvent OnShieldCollected;
-
     public UnityEvent OnSpeedBoostCollected;
+    public UnityEvent OnFireRateCollected;
+
 
     // Start is called before the first frame update
     void Start()
@@ -28,17 +29,23 @@ public class PowerUpManager : MonoBehaviour
 
         if (OnSpeedBoostCollected == null)
             OnSpeedBoostCollected = new UnityEvent();
+
+        if (OnFireRateCollected == null)
+            OnFireRateCollected = new UnityEvent();
     }
 
     public void TriggerShield()
     {
-        //Debug.Log("Shield Collected");
         OnShieldCollected.Invoke();
     }
     public void TriggerSpeedBoost()
     {
-        //Debug.Log("Speed Boost collected!");
         OnSpeedBoostCollected.Invoke();
+    }
+
+    public void TriggerFireRate()
+    {
+        OnFireRateCollected.Invoke();
     }
 
 }

@@ -15,7 +15,8 @@ public class Spaceship : MonoBehaviour
     private CollisionDetection collisionDetection;
 
     public float firerate = 1f;
-    private float canFire = -1f;
+    private float canFire = -1f;    
+    private bool isFireRateBoosted = false;
 
     public float playerWidth = 1f;
     public float playerHeight = 2f;
@@ -99,13 +100,24 @@ public class Spaceship : MonoBehaviour
     //Created a function t handle all the shooting mechanics to organize the code
     void ShootLaser()
     {
-        //Shooting happens only when space bar is pressed
-        //I also added a cooldown so that the player can not spam shoot
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > canFire)
+        if (Input.GetKey(KeyCode.Space))
         {
-            canFire = Time.time + firerate;
-            Instantiate(playerLaserPrefab, transform.position + new Vector3(0, 1f, 0), Quaternion.identity); //The vector3 is for the offset, allowing the laser to be spawned in the correct position
+            if (isFireRateBoosted)
+            {
+                Shoot();
+            }
+            else if (Time.time > canFire)
+            {
+                canFire = Time.time + firerate;
+                Shoot();
+            }
         }
+    }
+
+    void Shoot()
+    {
+        // Replace this with your laser instantiation logic
+        Instantiate(playerLaserPrefab, transform.position + new Vector3(0, 1f, 0), Quaternion.identity);
     }
 
     void EnemyCollision()
@@ -181,5 +193,24 @@ public class Spaceship : MonoBehaviour
         yield return new WaitForSeconds(5f);
         speed = baseSpeed;
         Debug.Log("Speed boost off.");
+    }
+
+    public void ActivateFireRateBoost()
+    {
+        if (isFireRateBoosted) return;
+
+        Debug.Log("Fire rate boosted!");
+        isFireRateBoosted = true;
+        canFire = -1f;
+
+        StartCoroutine(ResetFireRateAfterSeconds(5f));
+    }
+
+    IEnumerator ResetFireRateAfterSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        isFireRateBoosted = false;
+        canFire = Time.time + firerate;
+        Debug.Log("Fire rate returned to normal.");
     }
 }

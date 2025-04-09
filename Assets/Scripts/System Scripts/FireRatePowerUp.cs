@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedBoostPowerUp : MonoBehaviour
+public class FireRatePowerUp : MonoBehaviour
 {
     public float powerUpWidth = 1f;
     public float powerUpHeight = 1f;
@@ -40,8 +40,9 @@ public class SpeedBoostPowerUp : MonoBehaviour
             transform.position.x, transform.position.y, powerUpWidth, powerUpHeight,
             player.transform.position.x, player.transform.position.y, playerHitboxWidth, playerHitboxHeight))
         {
-            powerUpManager.TriggerSpeedBoost();
+            powerUpManager.TriggerFireRate();
             Destroy(gameObject);
         }
     }
 }
+

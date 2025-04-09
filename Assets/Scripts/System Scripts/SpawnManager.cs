@@ -14,6 +14,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject enemy; //and the object being spawned (the enemy)
     public GameObject shieldPowerUp;
     public GameObject speedPowerUp;
+    public GameObject fireRatePowerUp;
 
     //Variable to handle the time in between spawning of enemies
     public float spawnTime = 5f;
@@ -55,15 +56,19 @@ public class SpawnManager : MonoBehaviour
 
             Vector2 posToSpawn = new Vector2(Random.Range(-9.5f, 9.5f), 6.2f);
 
-            int randomChoice = Random.Range(0, 2);
+            int randomChoice = Random.Range(0, 3);
 
             if (randomChoice == 0)
             {
                 Instantiate(shieldPowerUp, posToSpawn, Quaternion.identity);
             }
-            else
+            else if (randomChoice == 1)
             {
                 Instantiate(speedPowerUp, posToSpawn, Quaternion.identity);
+            }
+            else if (randomChoice == 2)
+            {
+                Instantiate(fireRatePowerUp, posToSpawn, Quaternion.identity);
             }
         }
     }
