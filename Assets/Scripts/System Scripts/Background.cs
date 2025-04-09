@@ -15,7 +15,7 @@ public class ScrollingBackground : MonoBehaviour
 
     void Update()
     {
-        float newPosition = Mathf.Repeat(Time.time * scrollSpeed, 1);
+        float newPosition = Mathf.Repeat(Time.time * scrollSpeed, 2);
         transform.position = startPosition + Vector2.down * newPosition;
     }
 }

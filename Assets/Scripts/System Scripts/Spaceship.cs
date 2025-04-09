@@ -16,8 +16,11 @@ public class Spaceship : MonoBehaviour
 
     private CollisionDetection collisionDetection;
 
-    public float firerate = 1f;
-    private float canFire = -1f;    
+    public float baseFireRate = 1f;  
+    public float boostedFireRate = 0.5f;
+    private float currentFireRate;
+
+    private float canFire = -1f;
     private bool isFireRateBoosted = false;
 
     public float playerWidth = 1f;
@@ -54,6 +57,7 @@ public class Spaceship : MonoBehaviour
         shieldVisual = GetComponent<ShieldVisual>();
 
         baseSpeed = speed;
+        currentFireRate = baseFireRate;
 
         UpdateScoreDisplay();
         UpdateHeartsDisplay();
@@ -109,26 +113,27 @@ public class Spaceship : MonoBehaviour
         ////////////////
     }
 
-    //Created a function t handle all the shooting mechanics to organize the code
+    //Created a function to handle all the shooting mechanics to organize the code
     void ShootLaser()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && Time.time > canFire) 
         {
             if (isFireRateBoosted)
             {
-                Shoot();
+                Shoot();  
+                canFire = Time.time + boostedFireRate;  
             }
-            else if (Time.time > canFire)
+            else
             {
-                canFire = Time.time + firerate;
-                Shoot();
+                Shoot();  
+                canFire = Time.time + baseFireRate;  
             }
         }
     }
 
+
     void Shoot()
     {
-        // Replace this with your laser instantiation logic
         Instantiate(playerLaserPrefab, transform.position + new Vector3(0, 1f, 0), Quaternion.identity);
     }
 
@@ -215,9 +220,9 @@ public class Spaceship : MonoBehaviour
     {
         if (isFireRateBoosted) return;
 
-        Debug.Log("Fire rate boosted!");
         isFireRateBoosted = true;
-        canFire = -1f;
+        currentFireRate = boostedFireRate;  
+        canFire = -1f;  
 
         StartCoroutine(ResetFireRateAfterSeconds(5f));
     }
@@ -225,9 +230,10 @@ public class Spaceship : MonoBehaviour
     IEnumerator ResetFireRateAfterSeconds(float seconds)
     {
         yield return new WaitForSeconds(seconds);
+
         isFireRateBoosted = false;
-        canFire = Time.time + firerate;
-        Debug.Log("Fire rate returned to normal.");
+        currentFireRate = baseFireRate;  
+        canFire = Time.time + currentFireRate;  
     }
 
     public void IncreaseScore(int points)
