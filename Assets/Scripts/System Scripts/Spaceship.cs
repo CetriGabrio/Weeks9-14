@@ -49,6 +49,7 @@ public class Spaceship : MonoBehaviour
     public AudioSource backgroundMusicSource;
 
     private bool isGameOver = false;
+    public TextMeshProUGUI gameOverText;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +71,11 @@ public class Spaceship : MonoBehaviour
 
         if (isGameOver)
             return;
+
+        if (gameOverText != null)
+        {
+            gameOverText.gameObject.SetActive(false);  
+        }
 
     }
 
@@ -293,11 +299,15 @@ public class Spaceship : MonoBehaviour
             backgroundMusicSource.Stop();
         }
 
-        Time.timeScale = 0f;
+        Time.timeScale = 0f;  
 
         gameObject.SetActive(false);
 
-        Debug.Log("Game Over");
+        if (gameOverText != null)
+        {
+            gameOverText.text = "GAME OVER"; 
+            gameOverText.gameObject.SetActive(true); 
+        }
     }
 
 }
