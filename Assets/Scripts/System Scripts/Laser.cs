@@ -20,11 +20,15 @@ public class Laser : MonoBehaviour
     float enemyHitboxOffsetY = +0.5f;
     float enemyHitboxTrimRight = -1.5f;
 
+    private Spaceship spaceship;
+
     private CollisionDetection collisionDetection;
 
     private void Start()
     {
         collisionDetection = GetComponent<CollisionDetection>();
+
+        spaceship = GameObject.FindWithTag("Player").GetComponent<Spaceship>();
 
         //I am using tags so that if the laser detects the enemy tag, it process the intended code
         //In this case it would deal damage and destroy the enemy witouth impacting other elements
@@ -72,6 +76,11 @@ public class Laser : MonoBehaviour
 
                 //Destroy the enemy after collision with the laser
                 Destroy(enemy);
+
+                if (spaceship != null)
+                {
+                    spaceship.IncreaseScore(1);  
+                }
 
                 break;
             }

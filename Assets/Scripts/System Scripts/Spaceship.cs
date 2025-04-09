@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Spaceship : MonoBehaviour
 {
@@ -22,6 +24,9 @@ public class Spaceship : MonoBehaviour
     public float playerHeight = 2f;
 
     public int lives = 3;
+
+    public int score = 0;
+    public TextMeshProUGUI scoreText;
 
     float enemyHitboxOffsetX = -1f;
     float enemyHitboxOffsetY = +0.5f;
@@ -45,6 +50,8 @@ public class Spaceship : MonoBehaviour
         shieldVisual = GetComponent<ShieldVisual>();
 
         baseSpeed = speed;
+
+        UpdateScoreDisplay();
 
     }
 
@@ -172,6 +179,8 @@ public class Spaceship : MonoBehaviour
         if (isShielded)
         {
             isShielded = false;
+            Destroy(enemy);
+            IncreaseScore(1);
             Debug.Log("Shield Off");
         }
         else
@@ -212,5 +221,21 @@ public class Spaceship : MonoBehaviour
         isFireRateBoosted = false;
         canFire = Time.time + firerate;
         Debug.Log("Fire rate returned to normal.");
+    }
+
+    public void IncreaseScore(int points)
+    {
+        score += points;
+        UpdateScoreDisplay();
+    }
+
+    void UpdateScoreDisplay()
+    {
+        {
+            if (scoreText != null)
+            {
+                scoreText.text = "Score: " + score;
+            }
+        }
     }
 }
