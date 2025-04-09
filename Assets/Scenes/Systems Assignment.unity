@@ -271,6 +271,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnSpeedBoostCollected:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 819315099}
+        m_TargetAssemblyTypeName: Spaceship, Assembly-CSharp
+        m_MethodName: ActivateSpeedBoost
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnFireRateCollected:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 819315099}
+        m_TargetAssemblyTypeName: Spaceship, Assembly-CSharp
+        m_MethodName: ActivateFireRateBoost
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &397553492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,6 +636,8 @@ MonoBehaviour:
   enemySpawner: {fileID: 1308720979}
   enemy: {fileID: 5311338834211692434, guid: 8409ca34a60b9e346bf3d7c60a869965, type: 3}
   shieldPowerUp: {fileID: 3340341240891740124, guid: 9d697792f799032478f596c154db55c4, type: 3}
+  speedPowerUp: {fileID: 3455725267044215933, guid: 9dff72262117adb4caf1eb212ecff595, type: 3}
+  fireRatePowerUp: {fileID: 4479745350850052571, guid: 08b683c7a60469f4ab14b7e1d8502117, type: 3}
   spawnTime: 1
 --- !u!4 &1486760618
 Transform:
