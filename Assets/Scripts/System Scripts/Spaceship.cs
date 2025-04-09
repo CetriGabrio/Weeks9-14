@@ -28,6 +28,10 @@ public class Spaceship : MonoBehaviour
     public int score = 0;
     public TextMeshProUGUI scoreText;
 
+    public Image[] hearts;
+    public Sprite fullHeartSprite;
+    public Sprite emptyHeartSprite;
+
     float enemyHitboxOffsetX = -1f;
     float enemyHitboxOffsetY = +0.5f;
     float enemyHitboxTrimRight = -1.5f;
@@ -52,6 +56,7 @@ public class Spaceship : MonoBehaviour
         baseSpeed = speed;
 
         UpdateScoreDisplay();
+        UpdateHeartsDisplay();
 
     }
 
@@ -153,6 +158,8 @@ public class Spaceship : MonoBehaviour
 
                     lives--;
 
+                    UpdateHeartsDisplay();
+
                     if (lives < 1)
                     {
                         spawnManager.StopSpawning();
@@ -235,6 +242,21 @@ public class Spaceship : MonoBehaviour
             if (scoreText != null)
             {
                 scoreText.text = "Score: " + score;
+            }
+        }
+    }
+
+    void UpdateHeartsDisplay()
+    {
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < lives)
+            {
+                hearts[i].sprite = fullHeartSprite; 
+            }
+            else
+            {
+                hearts[i].sprite = emptyHeartSprite;
             }
         }
     }
