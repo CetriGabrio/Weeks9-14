@@ -153,6 +153,8 @@ public class Spaceship : MonoBehaviour
         transform.Translate(Vector3.up * verticalInput * speed * Time.deltaTime);
 
         //Creating player bouds so that the spaceship is enclosed in the screen
+        //I wanted to use the camera to capture the screen size so that when the game view is stretched, the boundaries do not brake
+        //However, I am not sure if we can use all of the camera code, such as ortographic view and more, so I left it like this 
 
         //This part is handling the vertical movement, so the player can only stay in the bottom side of the screen
         if (transform.position.y >= -1f)
