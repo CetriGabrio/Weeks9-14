@@ -16,6 +16,10 @@ public class Laser : MonoBehaviour
 
     public float speed = 1f;
 
+    float enemyHitboxOffsetX = -1f;
+    float enemyHitboxOffsetY = +0.5f;
+    float enemyHitboxTrimRight = -1.5f;
+
     private CollisionDetection collisionDetection;
 
     private void Start()
@@ -53,7 +57,7 @@ public class Laser : MonoBehaviour
         //Since I can not use colliders, rectangles are the easiest shape to code through logic
         if (collisionDetection.CheckCollision(
                 transform.position.x, transform.position.y, laserWidth, laserHeight,
-                enemy.transform.position.x, enemy.transform.position.y, enemyWidth, enemyHeight))
+                enemy.transform.position.x + enemyHitboxOffsetX, enemy.transform.position.y + enemyHitboxOffsetY, enemyWidth + enemyHitboxTrimRight, enemyHeight))
         {
             //Debug.Log("Player Laser hit Enemy!");
 

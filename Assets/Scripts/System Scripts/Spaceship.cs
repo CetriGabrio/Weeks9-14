@@ -21,6 +21,10 @@ public class Spaceship : MonoBehaviour
 
     public int lives = 3;
 
+    float enemyHitboxOffsetX = -1f;
+    float enemyHitboxOffsetY = +0.5f;
+    float enemyHitboxTrimRight = -1.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -104,7 +108,7 @@ public class Spaceship : MonoBehaviour
 
             if (collisionDetection.CheckCollision(
                     transform.position.x, transform.position.y, playerWidth, playerHeight,
-                    enemy.transform.position.x, enemy.transform.position.y, enemyWidth, enemyHeight))
+                    enemy.transform.position.x + enemyHitboxOffsetX, enemy.transform.position.y + enemyHitboxOffsetY, enemyWidth + enemyHitboxTrimRight, enemyHeight))
             {
                 lives--;
 
