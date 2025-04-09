@@ -21,9 +21,9 @@ public class PowerUpManager : MonoBehaviour
         //Here I am simply adding the listeners for each power up so I can call them in the other scripts
         if (spaceship != null)
         {
-            OnShieldCollected.AddListener(spaceship.ActivateShield);
-            OnSpeedBoostCollected.AddListener(spaceship.ActivateSpeedBoost);
-            OnFireRateCollected.AddListener(spaceship.ActivateFireRateBoost);
+            OnShieldCollected.AddListener(spaceship.ActivateShield); //activate the shield powerup
+            OnSpeedBoostCollected.AddListener(spaceship.ActivateSpeedBoost); //activate the speed boost
+            OnFireRateCollected.AddListener(spaceship.ActivateFireRateBoost); //activate the fire rate boost
         }
     }
 
