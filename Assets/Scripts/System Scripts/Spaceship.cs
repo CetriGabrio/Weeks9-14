@@ -44,6 +44,9 @@ public class Spaceship : MonoBehaviour
     public bool isShielded = false;
     public ShieldVisual shieldVisual;
 
+    public AudioSource audioSource;
+    public AudioClip laserSoundClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -120,13 +123,15 @@ public class Spaceship : MonoBehaviour
         {
             if (isFireRateBoosted)
             {
-                Shoot();  
+                Shoot();
+                PlayLaserSound();
                 canFire = Time.time + boostedFireRate;  
             }
             else
             {
                 Shoot();  
-                canFire = Time.time + baseFireRate;  
+                canFire = Time.time + baseFireRate;
+                PlayLaserSound();
             }
         }
     }
@@ -135,6 +140,15 @@ public class Spaceship : MonoBehaviour
     void Shoot()
     {
         Instantiate(playerLaserPrefab, transform.position + new Vector3(0, 1f, 0), Quaternion.identity);
+    }
+
+    void PlayLaserSound()
+    {
+        
+        if (audioSource != null && laserSoundClip != null)
+        {
+            audioSource.PlayOneShot(laserSoundClip);
+        }
     }
 
     void EnemyCollision()
