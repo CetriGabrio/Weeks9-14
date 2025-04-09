@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//I made this script to deal with the visual part of the shield powerup
 public class ShieldVisual : MonoBehaviour
 {
     public GameObject visualEffect;

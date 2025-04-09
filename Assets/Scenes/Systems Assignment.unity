@@ -647,7 +647,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  spaceship: {fileID: 0}
+  spaceship: {fileID: 819315099}
 --- !u!114 &397553492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1105,6 +1105,7 @@ MonoBehaviour:
   - {fileID: 170125329}
   fullHeartSprite: {fileID: -278715239, guid: 3b4063333d5b3f04a87935545c1e7c7e, type: 3}
   emptyHeartSprite: {fileID: -1380504717, guid: 3b4063333d5b3f04a87935545c1e7c7e, type: 3}
+  isShielded: 0
   shieldVisual: {fileID: 533676785}
   audioSource: {fileID: 819315103}
   laserSoundClip: {fileID: 8300000, guid: a623af56c3a940d46a53dd3072d8b3ae, type: 3}

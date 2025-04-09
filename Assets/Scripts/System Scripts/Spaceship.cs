@@ -5,51 +5,79 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
+//This is definately the main script of the whole project
+//It contains the plyer's spaceship behavior
 public class Spaceship : MonoBehaviour
 {
-
-    public float speed = 1f;
-    private float baseSpeed;
-
-    public GameObject playerLaserPrefab;
-    public GameObject enemy;
-
-    private CollisionDetection collisionDetection;
-    private PowerUpManager powerUpManager;
-
-    private float baseFireRate = 1f;  
-    private float boostedFireRate = 0.5f;
-    private float currentFireRate;
-
-    private float canFire = -1f;
-    private bool isFireRateBoosted = false;
-
+    //Size of the player
+    //Since I am using a rectangles shape, I only need the width and height
     private float playerWidth = 1f;
     private float playerHeight = 2f;
 
-    private int lives = 3;
-
-    public int score = 0;
-    public TextMeshProUGUI scoreText;
-
-    public Image[] hearts;
-    public Sprite fullHeartSprite;
-    public Sprite emptyHeartSprite;
-
+    //I added these variables to adjust the hitbox of the enemies in relation to the player hitbox
+    //At first they were incorrect, and the player would collide with the enemy in the most random position
+    //Since I didn't want to modify the rectangle's hitbox, I simply added some offsets to adjust them first handed
     float enemyHitboxOffsetX = -1f;
     float enemyHitboxOffsetY = +0.5f;
     float enemyHitboxTrimRight = -1.5f;
 
+    //Player lives
+    private int lives = 3;
+
+    //Movement speed for the player
+    public float speed = 1f;
+    //This variable baseSpeed is used for having a faster speed when the boost is collected
+    private float baseSpeed;
+
+    //Fire rate for the player
+    private float baseFireRate = 1f;
+    //Added a cooldown between laser so that the player cannot spam
+    private float canFire = -1f;
+    //Variable to detect if the fire rate has been modified
+    private bool isFireRateBoosted = false;
+    //This variable baseSpeed is used for having a higher fire rate when the boost is collected
+    private float boostedFireRate = 0.5f;
+    private float currentFireRate;
+
+    //Reference to the prefabs
+    public GameObject playerLaserPrefab;
+    public GameObject enemy;
+
+    //Referencing the collisions with the collision detection script
+    private CollisionDetection collisionDetection;
+
+    //Referencing the powerupManager for all the powerups
+    private PowerUpManager powerUpManager;
+
+    //Reference to the spawnManager
     private SpawnManager spawnManager;
 
-    private bool isShielded = false;
+    //////////////////////////////////////////////////////
+    //////////////////UI
+    /////////////////////////////////////////////////
+
+
+    //Score of the player, obtained by destroying enemies, with the text to give visual feedback
+    public int score = 0;
+    public TextMeshProUGUI scoreText;
+
+    //Images to showcase the hearts / lives of the player, both filled and empty
+    public Image[] hearts;
+    public Sprite fullHeartSprite;
+    public Sprite emptyHeartSprite;
+
+    //Reference to the shield powerup to visually show the shield 
+    public bool isShielded = false;
     public ShieldVisual shieldVisual;
 
+    //All the audio sources and clips for the music and effects
     public AudioSource audioSource;
     public AudioClip laserSoundClip;
     public AudioSource backgroundMusicSource;
     public AudioClip powerUpSoundClip;
 
+    //Bool variable that says when game over is triggered
     private bool isGameOver = false;
     public TextMeshProUGUI gameOverText;
 
@@ -217,7 +245,7 @@ public class Spaceship : MonoBehaviour
     public void ActivateShield()
     {
         isShielded = true;
-        Debug.Log("Shield On");
+        //Debug.Log("Shield On");
 
         PlayPowerUpSound();
     }
@@ -229,11 +257,11 @@ public class Spaceship : MonoBehaviour
             isShielded = false;
             Destroy(enemy);
             IncreaseScore(1);
-            Debug.Log("Shield Off");
+            //Debug.Log("Shield Off");
         }
         else
         {
-            Debug.Log("Damage");
+            //Debug.Log("Damage");
         }
     }
 
