@@ -662,7 +662,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUpManager: {fileID: 397553491}
   spaceship: {fileID: 819315099}
-  shieldVisual: {fileID: 0}
+  shieldVisual: {fileID: 533676785}
 --- !u!4 &397553493
 Transform:
   m_ObjectHideFlags: 0
